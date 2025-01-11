@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adelaide Renew Wood, Stone & Paint</title>
+  <style>
+    /* ===== 基础样式 ===== */
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    header, nav, section, footer {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== 顶部联系方式及网站状态 ===== */
+    .top-bar {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.95rem;
+    }
+    .top-bar a {
+      color: #0077cc;
+    }
+
+    /* ===== 导航栏 ===== */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+      margin-top: 0; /* 避免与 .top-bar 之间产生间距 */
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav li {
+      display: inline-block;
+    }
+
+    nav li a:hover {
+      color: #0077cc;
+    }
+
+    /* ===== 横幅区域（首页） ===== */
+    #home {
+      background: url('https://via.placeholder.com/1200x600?text=Wood%2C+Stone+%26+Paint') center/cover no-repeat;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    #home .overlay {
+      position: absolute;
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0;
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    #home .banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    #home h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    #home p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    #home .btn {
+      background-color: #0077cc;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+
+    #home .btn:hover {
+      background-color: #005fa3;
+    }
+
+    /* ===== 公共标题样式 ===== */
+    .section-title {
+      text-align: center;
+      margin: 60px 0 30px 0;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    /* ===== 关于我们 ===== */
+    #about .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #about img {
+      max-width: 400px;
+      border-radius: 10px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    #about .text {
+      max-width: 600px;
+    }
+
+    #about .text h2 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    #about .text p {
+      margin-bottom: 15px;
+    }
+
+    /* ===== 服务项目 ===== */
+    #services .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .service-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .service-box h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .service-box p {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .service-box .btn {
+      background-color: #0077cc;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .service-box .btn:hover {
+      background-color: #005fa3;
+    }
+
+    /* ===== 案例展示 ===== */
+    #portfolio .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .portfolio-item {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .portfolio-item .desc {
+      padding: 15px;
+    }
+
+    /* ===== 客户评价 ===== */
+    #testimonials .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .testimonial-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-box p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-author {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    /* ===== 常见问题 ===== */
+    #faq .faq-item {
+      background-color: #fff;
+      margin-bottom: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #faq .faq-item h4 {
+      margin-bottom: 10px;
+      color: #0077cc;
+    }
+
+    #faq .faq-item p {
+      margin-left: 10px;
+    }
+
+    /* ===== 联系我们 ===== */
+    #contact .contact-info, #contact .contact-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    #contact .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+      justify-content: space-between;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .contact-form button {
+      width: 150px;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #0077cc;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #005fa3;
+    }
+
+    /* ===== 页脚 ===== */
+    footer {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 15px;
+      margin-top: 40px;
+      box-shadow: 0px -2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 顶部联系方式及状态提示 ===== -->
+  <div class="top-bar">
+    <p>
+      <strong>Phone:</strong> 0493 343 981 | 
+      <strong>Email:</strong> <a href="mailto:aderwst@gmail.com">aderwst@gmail.com</a>
+    </p>
+    <p>
+      <strong>Website Under Construction</strong>
+    </p>
+  </div>
+
+  <!-- ===== 导航栏 & LOGO ===== -->
+  <header>
+    <div class="logo">
+      <!-- 将下方 src 替换成你的实际 LOGO 路径 -->
+      <img src="images/logo.png" alt="Adelaide Renew Wood, Stone & Paint" />
+      <h2>Adelaide Renew</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== 首页 Banner ===== -->
+  <section id="home">
+    <div class="overlay"></div>
+    <div class="banner-content">
+      <h1>Refresh, Repair & Renew</h1>
+      <p>
+        Expert Wood, Stone & Paint Services for a Brighter Space
+      </p>
+      <button class="btn" onclick="location.href='#contact'">Contact Us</button>
+    </div>
+  </section>
+
+  <!-- ===== 关于我们 ===== -->
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="content">
+      <!-- 示例图片占位符，请自行替换 -->
+      <img src="https://via.placeholder.com/400x300?text=Our+Team" alt="Team Photo" />
+      <div class="text">
+        <h2>Adelaide Renew Wood, Stone & Paint</h2>
+        <p>
+          We specialize in professional wood floor sanding and polishing, furniture refinishing, 
+          stone maintenance and sealing, as well as interior and exterior paint restoration. 
+          With years of industry experience, our mission is to help every client rediscover 
+          the original beauty of their home or business space.
+        </p>
+        <p>
+          Our team is committed to using eco-friendly materials and processes, ensuring minimal 
+          impact on both you and the environment, while providing outstanding results.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 服务项目 ===== -->
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-container">
+      <!-- Wood Floor -->
+      <div class="service-box">
+        <h3>Wood Floor Sanding & Polishing</h3>
+        <p>
+          Revive your worn-out hardwood floors with our professional sanding and polishing services. 
+          We repair scratches, remove old finishes, and apply protective coatings for extended durability.
+        </p>
+        <button class="btn" onclick="location.href='#contact'">Learn More</button>
+      </div>
+      <!-- Furniture Refinishing -->
+      <div class="service-box">
+        <h3>Furniture Refinishing</h3>
+        <p>
+          From antique wooden chairs to modern cabinets, we offer deep cleaning, sanding, 
+          recoloring and polishing services to bring your furniture back to life.
+        </p>
+        <button class="btn" onclick="location.href='#contact'">Learn More</button>
+      </div>
+      <!-- Stone Care -->
+      <div class="service-box">
+        <h3>Stone Care & Sealing</h3>
+        <p>
+          Whether you have marble, granite, or engineered stone, our polishing and sealing solutions 
+          effectively remove stains and scratches, restoring a natural shine.
+        </p>
+        <button class="btn" onclick="location.href='#contact'">Learn More</button>
+      </div>
+      <!-- Paint Restoration -->
+      <div class="service-box">
+        <h3>Paint Restoration</h3>
+        <p>
+          We provide comprehensive paint services for interior and exterior walls, doors, and windows, 
+          using premium, eco-friendly paints for a safe and elegant finish.
+        </p>
+        <button class="btn" onclick="location.href='#contact'">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 案例展示 ===== -->
+  <section id="portfolio">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio-grid">
+      <!-- 示例项目1 -->
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/400x300?text=Before+%26+After+Floor" alt="Wood Floor Project" />
+        <div class="desc">
+          <h4>Wood Floor Renewal</h4>
+          <p>Transformed dull, scratched wood flooring into a gleaming, durable surface.</p>
+        </div>
+      </div>
+      <!-- 示例项目2 -->
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/400x300?text=Before+%26+After+Furniture" alt="Furniture Refinishing" />
+        <div class="desc">
+          <h4>Furniture Refinishing</h4>
+          <p>Revitalized antique furniture with new stain and protective varnish.</p>
+        </div>
+      </div>
+      <!-- 示例项目3 -->
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/400x300?text=Before+%26+After+Stone" alt="Stone Polishing" />
+        <div class="desc">
+          <h4>Stone Polishing</h4>
+          <p>Restored shine to worn marble countertops with polishing and sealing.</p>
+        </div>
+      </div>
+      <!-- 示例项目4 -->
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/400x300?text=Before+%26+After+Paint" alt="Paint Restoration" />
+        <div class="desc">
+          <h4>Paint Restoration</h4>
+          <p>Refreshed interior walls and doors with high-quality, eco-friendly paint.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 客户评价 ===== -->
+  <section id="testimonials">
+    <h2 class="section-title">Testimonials</h2>
+    <div class="testimonials-container">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-box">
+        <p>
+          "We had our wood floors refinished by Adelaide Renew, and the result was incredible!
+          The team was professional and left no mess."
+        </p>
+        <div class="testimonial-author">- Sarah T.</div>
+      </div>
+      <!-- Testimonial 2 -->
+      <div class="testimonial-box">
+        <p>
+          "Their stone polishing service brought our old kitchen countertops back to life. 
+          Highly recommended for their attention to detail."
+        </p>
+        <div class="testimonial-author">- Kevin L.</div>
+      </div>
+      <!-- Testimonial 3 -->
+      <div class="testimonial-box">
+        <p>
+          "Excellent paint job on our home exterior. The crew was on time, courteous, and 
+          completed the work faster than expected."
+        </p>
+        <div class="testimonial-author">- Maria G.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 常见问题 ===== -->
+  <section id="faq">
+    <h2 class="section-title">FAQ</h2>
+    <!-- FAQ Item 1 -->
+    <div class="faq-item">
+      <h4>How long does it take to refinish wood floors?</h4>
+      <p>
+        It depends on the size and condition of the floor. We use high-quality, low-dust sanding 
+        equipment to minimize mess and typically complete most residential projects within a few days.
+      </p>
+    </div>
+    <!-- FAQ Item 2 -->
+    <div class="faq-item">
+      <h4>Will polishing stone surfaces cause any damage?</h4>
+      <p>
+        We employ gentle yet effective techniques to restore shine and remove scratches, protecting 
+        the longevity of your stone surfaces.
+      </p>
+    </div>
+    <!-- FAQ Item 3 -->
+    <div class="faq-item">
+      <h4>Are your paint products environmentally friendly?</h4>
+      <p>
+        Yes. We prioritize the use of eco-friendly, low-VOC paints to ensure better air quality and 
+        minimal impact on your health.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 联系我们 ===== -->
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-container">
+      <!-- 联系信息（已删除地址） -->
+      <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <p><strong>Phone:</strong> 0493 343 981</p>
+        <p>
+          <strong>Email:</strong> 
+          <a href="mailto:aderwst@gmail.com">aderwst@gmail.com</a>
+        </p>
+      </div>
+      <!-- 联系表单 -->
+      <div class="contact-form">
+        <h3>Leave a Message</h3>
+        <form>
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="text" name="phone" placeholder="Your Phone Number" />
+          <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 页脚 ===== -->
+  <footer>
+    <p>© 2025 Adelaide Renew Wood, Stone & Paint. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
